@@ -1,92 +1,126 @@
 # Fullstack Afiliados
 
+O objetivo desse teste é avaliar as suas habilidades em programação.
+
+## Descrição do projeto
+
+Surgiu uma nova demanda urgente e precisamos de uma área exclusiva para fazer o
+upload de um arquivo das transações feitas na venda de produtos por nossos
+clientes.
+
+Nossa plataforma trabalha no modelo criador-afiliado, sendo assim um criador
+pode vender seus produtos e ter 1 ou mais afiliados também vendendo esses
+produtos, desde que seja paga uma comissão por venda.
+
+Sua tarefa é construir uma interface web que possibilite o upload de um arquivo
+de transações de produtos vendidos, normalizar os dados e armazená-los em um
+banco de dados relacional.
+
+Você deve utilizar o arquivo [sales.txt](sales.txt) para fazer o teste da
+aplicação. O formato esá descrito na seção "Formato do arquivo de entrada".
 
 
-## Getting started
+## Requisitos Funcionais
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Sua aplicação deve:
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+1. Ter uma tela (via formulário) para fazer o upload do arquivo
+2. Fazer o parsing do arquivo recebido, normalizar os dados e armazená-los em um
+   banco de dados relacional, seguindo as definições de interpretação do arquivo
+3. Exibir a lista das transações de produtos importadas por produtor/afiliado,
+   com um totalizador do valor das transações realizadas
+4. Fazer tratamento de erros no backend, e reportar mensagens de erro amigáveis
+   no frontend.
 
-## Add your files
+## Requisitos Não Funcionais
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+1. Escreva um README descrevendo o projeto e como fazer o setup.
+2. A aplicação deve ser simples de configurar e rodar, compatível com ambiente
+   Unix. Você deve utilizar apenas bibliotecas gratuitas ou livres.
+3. Utilize docker para os diferentes serviços que compõe a aplicação para
+   que funcione facilmente fora do seu ambiente pessoal.
+4. Use qualquer banco de dados relacional.
+5. Use commits pequenos no Git e escreva uma boa descrição para cada um.
+6. Escreva unit tests tanto no backend quanto do frontend.
+7. Faça o código mais legível e limpo possível.
+8. Escreva o código (nomes e comentários) em inglês. A documentação pode ser em
+   português se preferir.
 
-```
-cd existing_repo
-git remote add origin https://lab.coodesh.com/challenges/fullstack/fullstack-afiliados.git
-git branch -M main
-git push -uf origin main
-```
+## Requisitos Bônus
 
-## Integrate with your tools
+Sua aplicação não precisa, mas ficaremos impressionados se ela:
 
-- [ ] [Set up project integrations](https://lab.coodesh.com/challenges/fullstack/fullstack-afiliados/-/settings/integrations)
+1. Tiver documentação das APIs do backend.
+2. Utilizar docker-compose para orquestar os serviços num todo.
+3. Ter testes de integração ou end-to-end.
+4. Tiver toda a documentação escrita em inglês fácil de entender. 
+5. Lidar com autenticação e/ou autorização.
 
-## Collaborate with your team
+## Formato do arquivo de entrada
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+| Campo    | Início | Fim | Tamanho | Descrição                      |
+| -------- | ------ | --- | ------- | ------------------------------ |
+| Tipo     | 1      | 1   | 1       | Tipo da transação              |
+| Data     | 2      | 26  | 25      | Data - ISO Date + GMT          |
+| Produto  | 27     | 56  | 30      | Descrição do produto           |
+| Valor    | 57     | 66  | 10      | Valor da transação em centavos |
+| Vendedor | 67     | 86  | 20      | Nome do vendedor               |
 
-## Test and Deploy
+### Tipos de transação
 
-Use the built-in continuous integration in GitLab.
+Esses são os valores possíveis para o campo Tipo:
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+| Tipo | Descrição         | Natureza | Sinal |
+| ---- | ----------------- | -------- | ----- |
+| 1    | Venda produtor    | Entrada  | +     |
+| 2    | Venda afiliado    | Entrada  | +     |
+| 3    | Comissão paga     | Saída    | -     |
+| 4    | Comissão recebida | Entrada  | +     |
 
-***
+## Avaliação
 
-# Editing this README
+Seu projeto será avaliado de acordo com os seguintes critérios:
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+1. Documentação do setup do ambiente e execução que rode a aplicação com
+   sucesso.
+2. Cumprimento dos [requisitos funcionais](#Requisitos-Funcionais) e
+   [não funcionais](#Requisitos-Nao-Funcionais).
+3. Boa estruturação do componentes e layout de código, mas sem over engineering.
+3. Legibilidade do código.
+4. Boa cobertura de testes.
+5. Claridade e extensão da documentação.
+6. Cumprimento de algum [requisito bônus](#Requisitos-Bonus).
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## Readme do Repositório
 
-## Name
-Choose a self-explaining name for your project.
+- Deve conter o título do projeto
+- Uma descrição sobre o projeto em frase
+- Deve conter uma lista com linguagem, framework e/ou tecnologias usadas
+- Como instalar e usar o projeto (instruções)
+- Não esqueça o [.gitignore](https://www.toptal.com/developers/gitignore)
+- Se está usando github pessoal, referencie que é um challenge by coodesh:  
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+>  This is a challenge by [Coodesh](https://coodesh.com/)
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+## Finalização e Instruções para a Apresentação
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Avisar sobre a finalização e enviar para correção.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+1. Confira se você respondeu o Scorecard anexado na Vaga que se candidatou;
+2. Confira se você respondeu o Mapeamento anexado na Vaga que se candidatou;
+3. Acesse [https://coodesh.com/challenges/review](https://coodesh.com/challenges/review);
+4. Adicione o repositório com a sua solução;
+5. Grave um vídeo, utilizando o botão na tela de solicitar revisão da Coodesh, com no máximo 5 minutos, com a apresentação do seu projeto. Utilize o tempo para:
+- Explicar o objetivo do desafio
+- Quais tecnologias foram utilizadas
+- Mostrar a aplicação em funcionamento
+- Foque em pontos obrigatórios e diferenciais quando for apresentar.
+6. Adicione o link da apresentação do seu projeto no README.md.
+7. Verifique se o Readme está bom e faça o commit final em seu repositório;
+8. Confira a vaga desejada;
+9. Envie e aguarde as instruções para seguir no processo. Sucesso e boa sorte. =)
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+## Suporte
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Use a [nossa comunidade](https://discord.gg/rdXbEvjsWu) para tirar dúvidas sobre o processo ou envie uma mensagem diretamente a um especialista no chat da plataforma. 
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
