@@ -34,16 +34,15 @@ Sua aplicação deve:
 
 ## Requisitos Não Funcionais
 
-1. Escreva um README descrevendo o projeto e como fazer o setup.
-2. A aplicação deve ser simples de configurar e rodar, compatível com ambiente
+1. A aplicação deve ser simples de configurar e rodar, compatível com ambiente
    Unix. Você deve utilizar apenas bibliotecas gratuitas ou livres.
-3. Utilize docker para os diferentes serviços que compõe a aplicação para
+2. Utilize docker para os diferentes serviços que compõe a aplicação para
    que funcione facilmente fora do seu ambiente pessoal.
-4. Use qualquer banco de dados relacional.
-5. Use commits pequenos no Git e escreva uma boa descrição para cada um.
-6. Escreva unit tests tanto no backend quanto do frontend.
-7. Faça o código mais legível e limpo possível.
-8. Escreva o código (nomes e comentários) em inglês. A documentação pode ser em
+3. Use qualquer banco de dados relacional.
+4. Use commits pequenos no Git e escreva uma boa descrição para cada um.
+5. Escreva unit tests tanto no backend quanto do frontend.
+6. Faça o código mais legível e limpo possível.
+7. Escreva o código (nomes e comentários) em inglês. A documentação pode ser em
    português se preferir.
 
 ## Requisitos Bônus
