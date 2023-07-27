@@ -25,4 +25,5 @@ services:
       - ./back-end:/home/node/app
     depends_on:
       - db
-    command: .docker/wait-for-it.sh db:3306 -t 120 -- .docker/entrypoint.sh
+    command: >
+      bash -c "chmod +x .docker/wait-for-it.sh && ./.docker/wait-for-it.sh db:3306 -t 120 -- chmod +x .docker/entrypoint.sh && ./.docker/entrypoint.sh"
