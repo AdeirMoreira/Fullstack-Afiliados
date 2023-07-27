@@ -1,0 +1,16 @@
+FROM node:20-slim
+
+COPY .docker/wait-for-it.sh /home/node/app/.docker/wait-for-it.sh
+COPY .docker/entrypoint.sh /home/node/app/.docker/entrypoint.sh
+
+# Conceda permissões de execução aos scripts
+RUN chmod +x /home/node/app/.docker/wait-for-it.sh
+RUN chmod +x /home/node/app/.docker/entrypoint.sh
+
+# Defina a pasta de trabalho para a aplicação
+WORKDIR /home/node/app
+
+CMD [ "/home/node/app/.docker/entrypoint.sh" ]  # Executa o entrypoint diretamente, sem copiar para outra pasta
+
+
+# CMD [ "tail", "-f", "/dev/null" ]

@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql
+    container_name: mysql
+    restart: always
+    tty: true
+    ports:
+      - 3306:3306
+    volumes:
+      - ./back-end/.docker/dbdata:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+
+  api:
+    build: ./back-end
+    container_name: api
+    ports:
+      - 3000:3000
+    volumes:
+      - ./back-end:/home/node/app
+    depends_on:
+      - db
+    command: .docker/wait-for-it.sh db:3306 -t 120 -- .docker/entrypoint.sh
