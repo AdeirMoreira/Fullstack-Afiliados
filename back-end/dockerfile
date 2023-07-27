@@ -1,6 +1,0 @@
-FROM node:20-slim
-
-# Defina a pasta de trabalho para a aplicação
-WORKDIR /home/node/app
-
-CMD [ "/home/node/app/.docker/entrypoint.sh" ]  # Executa o entrypoint diretamente, sem copiar para outra pasta

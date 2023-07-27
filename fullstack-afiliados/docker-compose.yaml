@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # db:
+  #   image: mysql
+  #   container_name: mysql
+  #   restart: always
+  #   tty: true
+  #   ports:
+  #     - ${DB_PORT}:${DB_PORT}
+  #   volumes:
+  #     - ./back-end/.docker/dbdata:/var/lib/mysql
+  #   environment:
+  #     - MYSQL_DATABASE=${DB_NAME}
+  #     - MYSQL_ROOT_PASSWORD=${DB_PASS}
+  #     - MYSQL_USER=${DB_USER}
+  #     - MYSQL_PASSWORD=${DB_PASS}
+
+  # api:
+  #   build: ./back-end
+  #   container_name: api
+  #   ports:
+  #     - ${API_PORT}:${API_PORT}
+  #   volumes:
+  #     - ./back-end:/home/node/app
+  #   depends_on:
+  #     - db
+  #   command: >
+  #     bash -c "chmod +x .docker/wait-for-it.sh && ./.docker/wait-for-it.sh db:${DB_PORT} -t 120 -- chmod +x .docker/entrypoint.sh && ./.docker/entrypoint.sh"
+
+  web:
+    build: ./front-end
+    container_name: react-app
+    ports:
+      - ${REACT_APP_PORT}:${REACT_APP_PORT}
+    volumes:
+      - ./front-end:/home/node/app
+    command: >
+      bash -c "chmod +x .docker/entrypoint.sh && ./.docker/entrypoint.sh"
+    # depends_on:
+    #   - api
