@@ -75,22 +75,20 @@ const CollapsibleTable = () => {
   const Row = (props) => {
     const { row } = props;
     const [open, setOpen] = React.useState(false);
-    console.log(row);
     return (
       <React.Fragment>
         <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
           <TableCell>
             <IconButton
               aria-label="expandir linha"
-              component="th"
               size="small"
               onClick={() => setOpen(!open)}
             >
               {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
             </IconButton>
           </TableCell>
-          <TableCell component="th">{row.name}</TableCell>
-          <TableCell component="th">{row.balance}</TableCell>
+          <TableCell>{row.name}</TableCell>
+          <TableCell>{row.balance}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
