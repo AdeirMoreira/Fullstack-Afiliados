@@ -3,9 +3,11 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { User } from "../../users/entity/user.entity";
 
 @Entity({ name: "Transaction" })
 export class Transaction {
@@ -49,4 +51,7 @@ export class Transaction {
 
   @DeleteDateColumn({name: 'deletedAt'})
   deleteaAt?: string;
+
+  @ManyToOne(() => User, (user) => user.transactions)
+  idUser!: number;
 }

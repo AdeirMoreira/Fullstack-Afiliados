@@ -56,7 +56,6 @@ export class CreateTableTransactions1690680771837
           {
             name: "deletedAt",
             type: "datetime",
-            default: "",
           },
         ],
       }),
