@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import transactionsService, {
   TransactionsService,
-} from "../service/transactionsService";
+} from "../service/transactions.service";
 
 export class TansactioController {
   constructor(private transactionsService: TransactionsService) {}

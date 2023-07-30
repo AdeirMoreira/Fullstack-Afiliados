@@ -1,5 +1,5 @@
 import { Router } from "express";
-import uploadController from "../controllers/uploadController";
+import uploadController from "../controllers/upload.controller";
 import multer from "multer";
 
 const upload = multer();

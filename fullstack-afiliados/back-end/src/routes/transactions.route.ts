@@ -1,5 +1,5 @@
 import { Router } from "express";
-import transactionsController from "../controllers/transactionsController";
+import transactionsController from "../controllers/transactions.controller";
 
 export const TransactionsRouter = Router()
 

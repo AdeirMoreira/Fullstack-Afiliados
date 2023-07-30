@@ -1,8 +1,8 @@
 interface TransactionsData {
-  transactionType: string;
+  transactionType: number;
   date: string;
   product: string;
-  value: string;
+  value: number;
   seller: string;
 }
 
@@ -55,10 +55,10 @@ export class UploadService {
       }
 
       transactionsData.push({
-        transactionType,
+        transactionType: +transactionType,
         date,
         product: product.trim(),
-        value,
+        value: +value,
         seller,
       });
     });
