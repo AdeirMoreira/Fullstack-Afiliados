@@ -1,7 +1,7 @@
-import { TransactionsRouter } from "./routes/transactions.route"
+import { SellersRouter } from "./routes/sellers.route"
 import { UploadRoutes } from "./routes/upload.route"
 import { app } from "./server"
 
 app.use('/uploadFile', UploadRoutes)
-app.use('/transaction', TransactionsRouter)
+app.use('/sellers', SellersRouter)
 

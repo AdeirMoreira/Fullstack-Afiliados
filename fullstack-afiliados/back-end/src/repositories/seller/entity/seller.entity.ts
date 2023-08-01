@@ -9,9 +9,9 @@ import {
 } from "typeorm";
 import { Transaction } from "../../transactions/entity/transaction.entity";
 
-@Entity({ name: "Users" })
-export class User {
-  @PrimaryGeneratedColumn("identity", { name: "idUser" })
+@Entity({ name: "Sellers" })
+export class Seller {
+  @PrimaryGeneratedColumn("identity", { name: "idSeller" })
   id!: number;
 
   @Column({
@@ -38,6 +38,6 @@ export class User {
   @DeleteDateColumn({name: 'deletedAt'})
   deleteaAt?: string;
 
-  @OneToMany(() => Transaction, (transactions) => transactions.idUser)
+  @OneToMany(() => Transaction, (transactions) => transactions.idSeller)
   transactions!: Transaction[]
 }

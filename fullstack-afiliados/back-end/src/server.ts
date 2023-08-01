@@ -2,7 +2,7 @@ import express, { Express } from "express";
 import cors from "cors";
 import { AddressInfo } from "net";
 import dotenv from "dotenv";
-import "reflect-metadata"
+import "reflect-metadata";
 import { AppDataSource } from "./datasource/datasource";
 
 dotenv.config();
@@ -21,16 +21,15 @@ const server = app.listen(process.env.API_PORT || 3003, () => {
   }
 });
 
-const  openConnection = async () => {
+const openConnection = async () => {
   try {
-    await AppDataSource.initialize()
-    console.log('successful database connection');
-    
+    await AppDataSource.initialize();
+    console.log("successful database connection");
   } catch (error) {
     console.log(error);
   }
-}
+};
 
-openConnection()
+openConnection();
 
-export default AppDataSource
+export default AppDataSource;

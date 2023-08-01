@@ -5,14 +5,14 @@ import {
   TableForeignKey,
 } from "typeorm";
 
-export class AddForeikeyIduserTableTransactions1690717597123
+export class AddForeikeyIdsellerTableTransactions1690717597123
   implements MigrationInterface
 {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(
       "Transaction",
       new TableColumn({
-        name: "idUser",
+        name: "idSellerId",
         type: "int",
         isNullable: false,
       })
@@ -21,16 +21,16 @@ export class AddForeikeyIduserTableTransactions1690717597123
     await queryRunner.createForeignKey(
       "Transaction",
       new TableForeignKey({
-        name: "idUserFK",
-        columnNames: ["idUser"],
-        referencedTableName: "Users",
-        referencedColumnNames: ["idUser"],
+        name: "idSellerFK",
+        columnNames: ["idSellerId"],
+        referencedTableName: "Sellers",
+        referencedColumnNames: ["idSeller"],
       })
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('Transaction', 'idUserFK')
-    await queryRunner.dropColumn('Transaction', 'idUser')
+    await queryRunner.dropForeignKey('Transaction', 'idSellerFK')
+    await queryRunner.dropColumn('Transaction', 'idSellerId')
   }
 }

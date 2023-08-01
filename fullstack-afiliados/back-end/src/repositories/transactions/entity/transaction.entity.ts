@@ -7,15 +7,31 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { User } from "../../users/entity/user.entity";
+import { Seller } from "../../seller/entity/seller.entity";
 
 @Entity({ name: "Transaction" })
 export class Transaction {
   @PrimaryGeneratedColumn("identity", { name: "idTransaction" })
   id!: number;
 
+  @Column({
+    name: "originFileName",
+    type: "varchar",
+    length: 250,
+    nullable: false,
+  })
+  originFileName!: string;
+
   @Column({ name: "typeTransaction", type: "int", nullable: false })
   type!: number;
+
+  @Column({
+    name: "description",
+    type: "varchar",
+    length: 250,
+    nullable: false,
+  })
+  description!: string;
 
   @Column({ name: "dateTransaction", type: "datetime", nullable: false })
   date!: string;
@@ -43,15 +59,15 @@ export class Transaction {
   })
   seller!: string;
 
-  @CreateDateColumn({name: 'createdAt'})
+  @CreateDateColumn({ name: "createdAt" })
   createadAt?: string;
 
-  @UpdateDateColumn({name: 'updateddAt'})
+  @UpdateDateColumn({ name: "updateddAt" })
   updatedAt?: string;
 
-  @DeleteDateColumn({name: 'deletedAt'})
+  @DeleteDateColumn({ name: "deletedAt" })
   deleteaAt?: string;
 
-  @ManyToOne(() => User, (user) => user.transactions)
-  idUser!: number;
+  @ManyToOne(() => Seller, (seller) => seller.transactions)
+  idSeller!: number;
 }

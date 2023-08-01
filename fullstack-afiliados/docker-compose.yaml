@@ -11,11 +11,10 @@ services:
     volumes:
       - ./back-end/.docker/dbdata:/var/lib/mysql
     environment:
-      # - MYSQL_DATABASE=test
+      - MYSQL_DATABASE=test
       - MYSQL_ROOT_PASSWORD=test
-      # - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-      # - MYSQL_USER=test
-      # - MYSQL_PASSWORD=test
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
 
   # api:
   #   build: ./back-end

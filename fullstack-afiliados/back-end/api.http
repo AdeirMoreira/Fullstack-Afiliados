@@ -2,4 +2,4 @@
 GET http://localhost:3003/uploadFile
 
 ###
-GET http://localhost:3003/transaction
+GET http://localhost:3003/sellers

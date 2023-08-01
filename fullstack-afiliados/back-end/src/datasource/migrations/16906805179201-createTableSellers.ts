@@ -1,18 +1,18 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateTableUsers1690683179201 implements MigrationInterface {
+export class CreateTableSellers1690683179201 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "Users",
+        name: "Sellers",
         columns: [
           {
-            name: "idUser",
+            name: "idSeller",
             type: "int",
             isPrimary: true,
             isGenerated: true,
             generationStrategy: "identity",
-            primaryKeyConstraintName: "idUserPK",
+            primaryKeyConstraintName: "idSellerPK",
           },
           {
             name: "name",
@@ -38,7 +38,6 @@ export class CreateTableUsers1690683179201 implements MigrationInterface {
           {
             name: "deletedAt",
             type: "timestamp",
-            default: "CURRENT_TIMESTAMP",
           },
         ],
       })
@@ -46,6 +45,6 @@ export class CreateTableUsers1690683179201 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Users')
+    await queryRunner.dropTable('Sellers')
   }
 }

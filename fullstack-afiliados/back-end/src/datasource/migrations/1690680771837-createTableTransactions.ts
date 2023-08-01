@@ -17,8 +17,20 @@ export class CreateTableTransactions1690680771837
             primaryKeyConstraintName: "idTransactionPK",
           },
           {
+            name: "originFileName",
+            type: "varchar",
+            length: "250",
+            isNullable: false,
+          },
+          {
             name: "typeTransaction",
             type: "int",
+            isNullable: false,
+          },
+          {
+            name: "description",
+            type: "varchar",
+            length: "250",
             isNullable: false,
           },
           {

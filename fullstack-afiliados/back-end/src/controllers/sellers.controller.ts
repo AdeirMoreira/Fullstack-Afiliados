@@ -1,14 +1,12 @@
 import { Request, Response } from "express";
-import transactionsService, {
-  TransactionsService,
-} from "../service/transactions.service";
+import sellersService, { SellersService } from "../service/sellers.service";
 
 export class TansactioController {
-  constructor(private transactionsService: TransactionsService) {}
+  constructor(private sellersService: SellersService) {}
 
   ListTransactions = async (req: Request, res: Response) => {
     try {
-      const response = await this.transactionsService.list();
+      const response = await this.sellersService.list();
       res.status(201).send(response);
     } catch (error: any) {
       res.status(error.statusCode || 400).send({ message: error.message });
@@ -16,4 +14,4 @@ export class TansactioController {
   };
 }
 
-export default new TansactioController(transactionsService);
+export default new TansactioController(sellersService);
