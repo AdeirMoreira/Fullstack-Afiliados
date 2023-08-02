@@ -11,7 +11,7 @@ export class CreateTableSellers1690683179201 implements MigrationInterface {
             type: "int",
             isPrimary: true,
             isGenerated: true,
-            generationStrategy: "identity",
+            generationStrategy: "increment",
             primaryKeyConstraintName: "idSellerPK",
           },
           {
@@ -38,6 +38,7 @@ export class CreateTableSellers1690683179201 implements MigrationInterface {
           {
             name: "deletedAt",
             type: "timestamp",
+            isNullable: true,
           },
         ],
       })

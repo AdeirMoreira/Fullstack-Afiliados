@@ -10,7 +10,7 @@ export class AddForeikeyIdsellerTableTransactions1690717597123
 {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(
-      "Transaction",
+      "Transactions",
       new TableColumn({
         name: "idSellerId",
         type: "int",
@@ -19,7 +19,7 @@ export class AddForeikeyIdsellerTableTransactions1690717597123
     );
 
     await queryRunner.createForeignKey(
-      "Transaction",
+      "Transactions",
       new TableForeignKey({
         name: "idSellerFK",
         columnNames: ["idSellerId"],
@@ -30,7 +30,7 @@ export class AddForeikeyIdsellerTableTransactions1690717597123
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('Transaction', 'idSellerFK')
-    await queryRunner.dropColumn('Transaction', 'idSellerId')
+    await queryRunner.dropForeignKey('Transactions', 'idSellerFK')
+    await queryRunner.dropColumn('Transactions', 'idSellerId')
   }
 }

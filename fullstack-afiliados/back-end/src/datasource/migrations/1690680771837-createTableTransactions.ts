@@ -6,14 +6,14 @@ export class CreateTableTransactions1690680771837
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "Transaction",
+        name: "Transactions",
         columns: [
           {
             name: "idTransaction",
             type: "int",
             isPrimary: true,
             isGenerated: true,
-            generationStrategy: "identity",
+            generationStrategy: "increment",
             primaryKeyConstraintName: "idTransactionPK",
           },
           {
@@ -68,6 +68,7 @@ export class CreateTableTransactions1690680771837
           {
             name: "deletedAt",
             type: "datetime",
+            isNullable: true,
           },
         ],
       }),
@@ -76,6 +77,6 @@ export class CreateTableTransactions1690680771837
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Transaction')
+    await queryRunner.dropTable('Transactions')
   }
 }

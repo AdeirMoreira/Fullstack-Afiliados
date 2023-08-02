@@ -9,9 +9,9 @@ import {
 } from "typeorm";
 import { Seller } from "../../seller/entity/seller.entity";
 
-@Entity({ name: "Transaction" })
+@Entity({ name: "Transactions" })
 export class Transaction {
-  @PrimaryGeneratedColumn("identity", { name: "idTransaction" })
+  @PrimaryGeneratedColumn("increment", { name: "idTransaction" })
   id!: number;
 
   @Column({
@@ -62,7 +62,7 @@ export class Transaction {
   @CreateDateColumn({ name: "createdAt" })
   createadAt?: string;
 
-  @UpdateDateColumn({ name: "updateddAt" })
+  @UpdateDateColumn({ name: "updatedAt" })
   updatedAt?: string;
 
   @DeleteDateColumn({ name: "deletedAt" })

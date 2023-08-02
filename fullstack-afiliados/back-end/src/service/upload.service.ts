@@ -1,24 +1,34 @@
-interface TransactionsData {
-  transactionType: number;
-  date: string;
-  product: string;
-  value: number;
-  seller: string;
-}
+import { TransactionsData } from "../common/types";
+import transactionService, { TransactionsService } from "./transaction.service";
 
 export class UploadService {
-  execute = (buffer: Buffer) => {
-    const [transactionsData, errors] = this.checkContent(buffer);
-    console.log("T", transactionsData);
-    console.log("E", errors);
+  constructor(private transactionService: TransactionsService) {}
 
-    if (errors.length) {
-      return Promise.reject(
-        new Error(
-          `The following errors were found in the file ${errors.toString()}`
-        )
+  execute = async (buffer: Buffer, fileName: string) => {
+    try {
+      const alreadyProcessed = await this.transactionService.findTransaction({
+        originFileName: fileName,
+      });
+
+      if(alreadyProcessed) {
+        return Promise.reject(`This file ${fileName} is already processed`)
+      }
+
+      const [transactionsData, errors] = this.checkContent(buffer);
+
+      if (errors.length) {
+        return Promise.reject(
+          new Error(
+            `The following errors were found in the file ${errors.toString()}`
+          )
+        );
+      }
+
+      await this.transactionService.createTransaction(
+        transactionsData as TransactionsData[],
+        fileName
       );
-    }
+    } catch (error) {}
   };
 
   checkContent(content: Buffer) {
@@ -67,4 +77,4 @@ export class UploadService {
   }
 }
 
-export default new UploadService();
+export default new UploadService(transactionService);

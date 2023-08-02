@@ -11,7 +11,7 @@ import { Transaction } from "../../transactions/entity/transaction.entity";
 
 @Entity({ name: "Sellers" })
 export class Seller {
-  @PrimaryGeneratedColumn("identity", { name: "idSeller" })
+  @PrimaryGeneratedColumn("increment", { name: "idSeller" })
   id!: number;
 
   @Column({
@@ -32,12 +32,12 @@ export class Seller {
   @CreateDateColumn({name: 'createdAt'})
   createadAt?: string;
 
-  @UpdateDateColumn({name: 'updateddAt'})
+  @UpdateDateColumn({name: 'updatedAt'})
   updatedAt?: string;
 
   @DeleteDateColumn({name: 'deletedAt'})
   deleteaAt?: string;
 
-  @OneToMany(() => Transaction, (transactions) => transactions.idSeller)
+  @OneToMany(() => Transaction, (transaction) => transaction.idSeller)
   transactions!: Transaction[]
 }

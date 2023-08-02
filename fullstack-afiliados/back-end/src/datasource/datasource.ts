@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
-import { Seller } from "../repositories/seller/entity/seller.entity";
-import { Transaction } from "../repositories/transactions/entity/transaction.entity";
+import { Seller } from "../entities/seller/entity/seller.entity";
+import { Transaction } from "../entities/transactions/entity/transaction.entity";
 import { CreateTableTransactions1690680771837 } from "./migrations/1690680771837-createTableTransactions";
 import { CreateTableSellers1690683179201 } from "./migrations/16906805179201-createTableSellers";
 import { CreateTableDOMTypeTransaction1690719361711 } from "./migrations/1690719361711-createTableDOM_Type_Transaction";

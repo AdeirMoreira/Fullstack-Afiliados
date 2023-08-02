@@ -9,8 +9,8 @@ export class UploadController {
       if (!file?.buffer) {
         res.status(404).send({ message: "Arquivo não enviado." });
       } else {
-        const { buffer } = file;
-        const response = await this.uploadService.execute(buffer);
+        const { buffer, originalname } = file;
+        const response = await this.uploadService.execute(buffer, originalname);
         res.status(201).send(response);
       }
     } catch (error: any) {
