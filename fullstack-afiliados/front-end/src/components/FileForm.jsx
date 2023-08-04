@@ -7,11 +7,11 @@ import {
   FILE_NOT_SELECTED,
   INCORRECT_FILE,
   SUCCESS,
-  UPLOAD_FAILURE,
   UPLOAD_SUCCESS,
 } from "../constants";
 
-const FileForm = () => {
+const FileForm = (props) => {
+  const {getSellerEventHandle} = props
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [snackbarInfo, setSnackbarInfo] = React.useState({
     show: false,
@@ -32,6 +32,8 @@ const FileForm = () => {
 
       uploadFile(formData)
         .then(() => {
+          getSellerEventHandle(true)
+
           setSnackbarInfo({
             show: true,
             severety: SUCCESS,
@@ -39,13 +41,13 @@ const FileForm = () => {
             message: UPLOAD_SUCCESS,
           });
         })
-        .catch(() => {
+        .catch((error) => {
 
           setSnackbarInfo({
             show: true,
             severety: ERROR,
             color: ERROR,
-            message: UPLOAD_FAILURE,
+            message: error.errorMessage,
           });
         });
     }
@@ -54,7 +56,6 @@ const FileForm = () => {
   const checkFile = () => {
     const info = { show: true, severety: ERROR, color: ERROR };
     if (selectedFile === null) {
-      console.log('NULL');
       setSnackbarInfo({
         ...info,
         message: FILE_NOT_SELECTED,

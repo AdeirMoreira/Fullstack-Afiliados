@@ -3,6 +3,8 @@ import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import FileForm from "../components/FileForm";
 import TransactionList from "../components/TransactionList";
 const MainPage = () => {
+  const [getSellerEvent, setGetSellerEvent] = React.useState(false);
+
   return (
     <React.Fragment>
       <Box>
@@ -14,15 +16,18 @@ const MainPage = () => {
           </Toolbar>
         </AppBar>
       </Box>
-      <Box sx={{
-        display: 'flex',
-        flexDirection:  {xs: 'column', md: 'row'},
-      }}>
-        <FileForm />
-        <TransactionList/>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+        }}
+      >
+        <FileForm getSellerEventHandle={setGetSellerEvent} />
+        <TransactionList
+          getSellerEvent={getSellerEvent}
+          getSellerEventHandle={setGetSellerEvent}
+        />
       </Box>
-      
-      
     </React.Fragment>
   );
 };

@@ -1,3 +1,4 @@
+import { ErrorObject } from "../common";
 import { TransactionsData } from "../common/types";
 import transactionService, { TransactionsService } from "./transaction.service";
 
@@ -10,25 +11,26 @@ export class UploadService {
         originFileName: fileName,
       });
 
-      if(alreadyProcessed) {
-        return Promise.reject(`This file ${fileName} is already processed`)
+      if (alreadyProcessed) {
+        return Promise.reject(
+          new Error(`This file ${fileName} is already processed`)
+        );
       }
 
       const [transactionsData, errors] = this.checkContent(buffer);
 
       if (errors.length) {
-        return Promise.reject(
-          new Error(
-            `The following errors were found in the file ${errors.toString()}`
-          )
-        );
+        return Promise.reject(new Error(errors.toString()));
       }
 
       await this.transactionService.createTransaction(
         transactionsData as TransactionsData[],
         fileName
       );
-    } catch (error) {}
+      return Promise.resolve();
+    } catch (error: any) {
+      return Promise.reject(error);
+    }
   };
 
   checkContent(content: Buffer) {

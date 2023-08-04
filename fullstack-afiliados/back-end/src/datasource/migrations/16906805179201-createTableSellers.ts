@@ -19,6 +19,7 @@ export class CreateTableSellers1690683179201 implements MigrationInterface {
             type: "varchar",
             length: "250",
             isNullable: false,
+            isUnique: true
           },
           {
             name: "balance",

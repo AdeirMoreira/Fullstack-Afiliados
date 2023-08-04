@@ -12,8 +12,21 @@ export const uploadFile = (file) => {
       .then(() => {
         resolve();
       })
-      .catch(() => {
-        reject();
+      .catch((error) => {
+        reject(error.response.data);
+      });
+  });
+};
+
+export const fetchSellers = () => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${BASE_URL}/sellers`)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((error) => {
+        reject(error.response.data)
       });
   });
 };

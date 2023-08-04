@@ -14,63 +14,9 @@ import {
 } from "@mui/material";
 
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
-const CollapsibleTable = () => {
-  const data = [
-    {
-      name: "ELIANA NOGUEIRA",
-      balance: 50,
-      transactions: [
-        {
-          type: "Venda produtor",
-          date: "20/07/2023",
-          product: "DESENVOLVEDOR FULL STACK",
-          value: 25,
-        },
-      ],
-    },
-    {
-      name: "ELIANA NOGUEIRA",
-      balance: 50,
-      transactions: [
-        {
-          type: "Venda produtor",
-          date: "20/07/2023",
-          product: "DESENVOLVEDOR FULL STACK",
-          value: 25,
-        },
-        {
-          type: "Venda produtor",
-          date: "20/07/2023",
-          product: "DESENVOLVEDOR FULL STACK",
-          value: 25,
-        },
-      ],
-    },
-    {
-      name: "ELIANA NOGUEIRA",
-      balance: 50,
-      transactions: [
-        {
-          type: "Venda produtor",
-          date: "20/07/2023",
-          product: "DESENVOLVEDOR FULL STACK",
-          value: 25,
-        },
-        {
-          type: "Venda produtor",
-          date: "20/07/2023",
-          product: "DESENVOLVEDOR FULL STACK",
-          value: 25,
-        },
-        {
-          type: "Venda produtor",
-          date: "20/07/2023",
-          product: "DESENVOLVEDOR FULL STACK",
-          value: 25,
-        },
-      ],
-    },
-  ];
+const CollapsibleTable = (props) => {
+  
+   const {sellers} = props
 
   const Row = (props) => {
     const { row } = props;
@@ -115,7 +61,7 @@ const CollapsibleTable = () => {
                   <TableBody>
                     {row.transactions.map((t, index) => (
                       <TableRow key={index}>
-                        <TableCell>{t.type}</TableCell>
+                        <TableCell>{t.description}</TableCell>
                         <TableCell>{t.date}</TableCell>
                         <TableCell>{t.product}</TableCell>
                         <TableCell>{t.value}</TableCell>
@@ -142,7 +88,7 @@ const CollapsibleTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((d, index) => (
+          {sellers.map((d, index) => (
             <Row key={index} row={d} />
           ))}
         </TableBody>

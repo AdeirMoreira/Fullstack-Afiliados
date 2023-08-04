@@ -1,17 +1,19 @@
 import { Request, Response } from "express";
 import sellersService, { SellersService } from "../service/sellers.service";
+import { ErrorObject } from "../common";
 
-export class TansactioController {
+export class SellersController {
   constructor(private sellersService: SellersService) {}
 
-  ListTransactions = async (req: Request, res: Response) => {
+  ListSellers = async (req: Request, res: Response) => {
     try {
       const response = await this.sellersService.list();
       res.status(200).send(response);
     } catch (error: any) {
-      res.status(error.statusCode || 400).send({ message: error.message });
+      const { obj, status } = ErrorObject("Failed to list sellers", error);
+      res.status(status).send(obj.error);
     }
   };
 }
 
-export default new TansactioController(sellersService);
+export default new SellersController(sellersService);

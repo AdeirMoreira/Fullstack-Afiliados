@@ -3,5 +3,5 @@ import SellersController from "../controllers/sellers.controller";
 
 export const SellersRouter = Router()
 
-SellersRouter.get('', SellersController.ListTransactions)
+SellersRouter.get('', SellersController.ListSellers)
 

@@ -11,6 +11,7 @@ export class SellersService {
       });
     } catch (error) {
       console.log(error);
+      return Promise.reject(error)
     }
   };
 }

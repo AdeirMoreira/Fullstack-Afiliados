@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import uploadService, { UploadService } from "../service/upload.service";
+import { ErrorObject } from "../common";
 export class UploadController {
   constructor(private uploadService: UploadService) {}
 
@@ -13,8 +14,10 @@ export class UploadController {
         const response = await this.uploadService.execute(buffer, originalname);
         res.status(201).send(response);
       }
+      
     } catch (error: any) {
-      res.status(error.statusCode || 400).send({ message: error.message });
+      const { obj, status } = ErrorObject("Failed to process the file", error);
+      res.status(status).send(obj);
     }
   };
 }
