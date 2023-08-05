@@ -21,3 +21,9 @@ export type Error_Object = {
   obj : ErrorRequest
   status: number
 }
+
+export type Payload = {
+  email: string,
+  name: string,
+  admin: boolean
+}

@@ -48,7 +48,7 @@ export class User {
     type: "boolean",
     nullable: false,
   })
-  admin!: string;
+  admin!: boolean;
 
   @CreateDateColumn({ name: "createdAt" })
   createadAt?: string;

@@ -32,14 +32,18 @@ export class ErrorRequestBuilder {
   }
 }
 
-export function ErrorObject(mensagem: string, erro: Error | Error_Object) {
+export function ErrorObject(
+  mensagem: string,
+  erro: Error | Error_Object,
+  status: number = 400
+) {
   if (erro instanceof Error) {
     return {
       obj: new ErrorRequestBuilder()
         .setErrorMessage(mensagem)
         .setError(erro as Error)
         .build(),
-      status: 400,
+      status,
     };
   } else {
     return {
@@ -52,6 +56,6 @@ export function ErrorObject(mensagem: string, erro: Error | Error_Object) {
 export function DatabaseErrorhandling(error: Error) {
   const stringError = error.toString();
   if (stringError.includes("Duplicate") && stringError.includes("@")) {
-    return ErrorObject("Esse email já está em uso", new Error());
+    return ErrorObject("Esse email já está em uso", new Error(), 500);
   }
 }

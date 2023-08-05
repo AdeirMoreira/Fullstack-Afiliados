@@ -16,7 +16,7 @@ export class UploadController {
       }
       
     } catch (error: any) {
-      const { obj, status } = ErrorObject("Failed to process the file", error);
+      const { obj, status } = ErrorObject("Falha ao processar o arquivo", error);
       res.status(status).send(obj);
     }
   };

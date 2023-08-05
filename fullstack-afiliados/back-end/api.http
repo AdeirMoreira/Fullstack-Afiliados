@@ -1,11 +1,28 @@
-### register Project
+### Login
+# @name login
+POST http://localhost:3003/auth
+Content-Type: application/json
+
+{
+    "email": "teste@email.com",
+    "password": "novasenha"
+}
+
+###
+
+@token = {{login.response.body.token}}
+
+### 
 GET http://localhost:3003/uploadFile
+Authorization: {{token}}
 
 ###
 GET http://localhost:3003/sellers
+Authorization: {{token}}
 
 ###
 POST http://localhost:3003/users
+Authorization: {{token}}
 Content-Type: application/json
 
 {
@@ -13,5 +30,4 @@ Content-Type: application/json
     "email": "teste@email.com",
     "password": "novasenha",
     "admin":true
-
 }

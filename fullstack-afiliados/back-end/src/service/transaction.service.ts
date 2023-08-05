@@ -58,7 +58,6 @@ export class TransactionsService {
         });
       }
     } catch (error) {
-      console.log(error);
       return Promise.reject(error);
     }
   }
@@ -67,7 +66,6 @@ export class TransactionsService {
     try {
       return this.dataSource.manager.findOne(Transaction, { where });
     } catch (error) {
-      console.log(error);
       return Promise.reject(error);
     }
   }

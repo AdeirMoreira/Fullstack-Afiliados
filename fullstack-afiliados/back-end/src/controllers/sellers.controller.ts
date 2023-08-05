@@ -10,7 +10,7 @@ export class SellersController {
       const response = await this.sellersService.list();
       res.status(200).send(response);
     } catch (error: any) {
-      const { obj, status } = ErrorObject("Failed to list sellers", error);
+      const { obj, status } = ErrorObject("Falha ao listar os vendedores", error);
       res.status(status).send(obj.error);
     }
   };
