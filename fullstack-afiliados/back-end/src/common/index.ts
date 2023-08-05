@@ -1,3 +1,5 @@
+import { Error_Object } from "./types";
+
 export class ErrorRequest {
   errorMessage: string;
   error: string;
@@ -30,12 +32,26 @@ export class ErrorRequestBuilder {
   }
 }
 
-export function ErrorObject(mensagem: string, erro: Error) {
-  return {
-    obj: new ErrorRequestBuilder()
-      .setErrorMessage(mensagem)
-      .setError(erro)
-      .build(),
-    status: 400,
-  };
+export function ErrorObject(mensagem: string, erro: Error | Error_Object) {
+  if (erro instanceof Error) {
+    return {
+      obj: new ErrorRequestBuilder()
+        .setErrorMessage(mensagem)
+        .setError(erro as Error)
+        .build(),
+      status: 400,
+    };
+  } else {
+    return {
+      obj: erro.obj,
+      status: erro.status,
+    };
+  }
+}
+
+export function DatabaseErrorhandling(error: Error) {
+  const stringError = error.toString();
+  if (stringError.includes("Duplicate") && stringError.includes("@")) {
+    return ErrorObject("Esse email já está em uso", new Error());
+  }
 }

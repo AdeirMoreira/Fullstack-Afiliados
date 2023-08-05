@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { Transaction } from "../../transactions/entity/transaction.entity";
+import { Transaction } from "../transactions/transaction.entity";
 
 @Entity({ name: "Sellers" })
 export class Seller {
@@ -18,6 +18,7 @@ export class Seller {
     name: "name",
     type: "varchar",
     length: 250,
+    unique: true,
     nullable: false,
   })
   name!: string;
@@ -29,15 +30,15 @@ export class Seller {
   })
   balance!: number;
 
-  @CreateDateColumn({name: 'createdAt'})
+  @CreateDateColumn({ name: "createdAt" })
   createadAt?: string;
 
-  @UpdateDateColumn({name: 'updatedAt'})
+  @UpdateDateColumn({ name: "updatedAt" })
   updatedAt?: string;
 
-  @DeleteDateColumn({name: 'deletedAt'})
+  @DeleteDateColumn({ name: "deletedAt" })
   deleteaAt?: string;
 
   @OneToMany(() => Transaction, (transaction) => transaction.idSeller)
-  transactions!: Transaction[]
+  transactions!: Transaction[];
 }

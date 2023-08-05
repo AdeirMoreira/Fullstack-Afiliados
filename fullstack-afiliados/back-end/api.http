@@ -3,3 +3,15 @@ GET http://localhost:3003/uploadFile
 
 ###
 GET http://localhost:3003/sellers
+
+###
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "name": "teste",
+    "email": "teste@email.com",
+    "password": "novasenha",
+    "admin":true
+
+}

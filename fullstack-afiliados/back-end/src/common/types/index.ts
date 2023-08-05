@@ -1,4 +1,5 @@
 import { Transaction } from "typeorm";
+import { ErrorRequest } from "..";
 
 export interface TransactionsData {
   transactionType: number;
@@ -15,3 +16,8 @@ export interface Type_Transaction {
 }
 
 export type PartialTransaction = Partial<Transaction>
+
+export type Error_Object = {
+  obj : ErrorRequest
+  status: number
+}

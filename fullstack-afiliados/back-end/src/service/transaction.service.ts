@@ -1,8 +1,8 @@
 import { DataSource } from "typeorm";
 import { TransactionsData, Type_Transaction } from "../common/types";
-import { Seller } from "../entities/seller/entity/seller.entity";
+import { Seller } from "../entities/seller/seller.entity";
 import AppDataSource from "../server";
-import { Transaction } from "../entities/transactions/entity/transaction.entity";
+import { Transaction } from "../entities/transactions/transaction.entity";
 
 export class TransactionsService {
   constructor(private dataSource: DataSource) {}
@@ -59,8 +59,7 @@ export class TransactionsService {
       }
     } catch (error) {
       console.log(error);
-      return Promise.reject(error)
-      
+      return Promise.reject(error);
     }
   }
 
@@ -69,7 +68,7 @@ export class TransactionsService {
       return this.dataSource.manager.findOne(Transaction, { where });
     } catch (error) {
       console.log(error);
-      return Promise.reject(error)
+      return Promise.reject(error);
     }
   }
 }

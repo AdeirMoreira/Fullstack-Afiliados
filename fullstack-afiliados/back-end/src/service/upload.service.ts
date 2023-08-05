@@ -13,14 +13,19 @@ export class UploadService {
 
       if (alreadyProcessed) {
         return Promise.reject(
-          new Error(`This file ${fileName} is already processed`)
+          ErrorObject(`Este arquivo ${fileName} já foi processado`, new Error())
         );
       }
 
       const [transactionsData, errors] = this.checkContent(buffer);
 
       if (errors.length) {
-        return Promise.reject(new Error(errors.toString()));
+        return Promise.reject(
+          ErrorObject(
+            "Foram encontrados erros do arquivo",
+            new Error(errors.toString())
+          )
+        );
       }
 
       await this.transactionService.createTransaction(

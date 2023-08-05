@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm";
-import { Seller } from "../entities/seller/entity/seller.entity";
+import { Seller } from "../entities/seller/seller.entity";
 import AppDataSource from "../server";
 
 export class SellersService {
@@ -11,7 +11,7 @@ export class SellersService {
       });
     } catch (error) {
       console.log(error);
-      return Promise.reject(error)
+      return Promise.reject(error);
     }
   };
 }
