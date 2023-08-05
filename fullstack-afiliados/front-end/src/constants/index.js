@@ -5,10 +5,10 @@ export const BASE_URL = 'http://localhost:3003'
 // error messages
 export const  FILE_NOT_SELECTED = "Por favor selecione o arquivo de transações."
 export const  INCORRECT_FILE = "O arquivo de transações deve ser no formato .txt"
-export const  UPLOAD_FAILURE = 'Falha no upload do arquivo, por favor tente novamente.'
 
 // success mensage 
 export const UPLOAD_SUCCESS = 'Upload do arquivo de transações concluído.'
+export const USER_CREATE_SUCCESS = 'Usuário criado com sucesso.'
 
 // ALERT COLOR AND SEVERITY
 export const ERROR = 'error'

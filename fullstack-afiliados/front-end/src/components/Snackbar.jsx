@@ -9,7 +9,7 @@ const CustonSnackbar = (props) => {
       open={open}
       autoHideDuration={6000}
       onClose={handleClose}
-      anchorOrigin={{ vertical: "top", horizontal: "left" }}
+      anchorOrigin={{ vertical: "top", horizontal: "center" }}
     >
       <Alert variant="filled" onClose={handleClose} severity={severity} color={color} sx={{ width: "100%" }}>
         {message}

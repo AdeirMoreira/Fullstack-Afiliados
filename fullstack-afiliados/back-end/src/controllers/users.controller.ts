@@ -20,6 +20,8 @@ export class UsersController {
       const response = await this.usersService.createUser(newUser);
       res.status(201).send(response);
     } catch (error: any) {
+      console.log('ERRROR ANTES',error);
+      
       error = DatabaseErrorhandling(error)
       const { obj, status } = ErrorObject("Falha ao criar o usuário", error);
       res.status(status).send(obj);

@@ -15,6 +15,7 @@ export class ValidateService {
   async validateUser(newUser: Object) {
     try {
       const validatorResult = await validate(newUser, this.validateOptions);
+      
       if (validatorResult.length) {
         const errormessage =  this.createErrorMessage(validatorResult);
         return Promise.reject(ErrorObject(errormessage, new Error()))

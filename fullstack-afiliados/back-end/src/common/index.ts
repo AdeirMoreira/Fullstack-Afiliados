@@ -54,8 +54,12 @@ export function ErrorObject(
 }
 
 export function DatabaseErrorhandling(error: Error) {
-  const stringError = error.toString();
-  if (stringError.includes("Duplicate") && stringError.includes("@")) {
-    return ErrorObject("Esse email já está em uso", new Error(), 500);
+  if (error instanceof Error) {
+    const stringError = error.toString();
+    if (stringError.includes("Duplicate") && stringError.includes("@")) {
+      return ErrorObject("Esse email já está em uso", new Error(), 500);
+    }
+  } else {
+    return error;
   }
 }
