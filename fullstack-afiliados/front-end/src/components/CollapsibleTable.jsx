@@ -14,9 +14,9 @@ import {
 } from "@mui/material";
 
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
+import { formatDateMomentJS, formatReal } from "../common";
 const CollapsibleTable = (props) => {
-  
-   const {sellers} = props
+  const { sellers } = props;
 
   const Row = (props) => {
     const { row } = props;
@@ -34,7 +34,7 @@ const CollapsibleTable = (props) => {
             </IconButton>
           </TableCell>
           <TableCell>{row.name}</TableCell>
-          <TableCell>{row.balance}</TableCell>
+          <TableCell>{formatReal(row.balance)}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
@@ -52,19 +52,19 @@ const CollapsibleTable = (props) => {
                 <Table>
                   <TableHead>
                     <TableRow>
-                      <TableCell align="center">Tipo</TableCell>
-                      <TableCell align="center">Data</TableCell>
-                      <TableCell align="center">Produto</TableCell>
-                      <TableCell align="center">Valor</TableCell>
+                      <TableCell>Tipo</TableCell>
+                      <TableCell>Data</TableCell>
+                      <TableCell>Produto</TableCell>
+                      <TableCell>Valor</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {row.transactions.map((t, index) => (
                       <TableRow key={index}>
                         <TableCell>{t.description}</TableCell>
-                        <TableCell>{t.date}</TableCell>
+                        <TableCell>{formatDateMomentJS(t.date)}</TableCell>
                         <TableCell>{t.product}</TableCell>
-                        <TableCell>{t.value}</TableCell>
+                        <TableCell>{formatReal(t.value)}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
@@ -83,8 +83,8 @@ const CollapsibleTable = (props) => {
         <TableHead>
           <TableRow>
             <TableCell></TableCell>
-            <TableCell align="center">Vendedor</TableCell>
-            <TableCell align="center">Saldo</TableCell>
+            <TableCell>Vendedor</TableCell>
+            <TableCell>Saldo</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

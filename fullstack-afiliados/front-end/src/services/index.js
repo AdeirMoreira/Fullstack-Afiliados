@@ -1,3 +1,4 @@
+import  jwt_decode from 'jwt-decode';
 import axios from "axios";
 import { BASE_URL } from "../constants";
 
@@ -20,6 +21,16 @@ const setToken = (token) => {
 
 const getToken = () => {
   return window.localStorage.getItem('token')
+}
+
+export const removeToken = () => {
+  return window.localStorage.removeItem('token')
+}
+
+export const getTokenData = () => {
+  const token = getToken()
+  const {payload} = jwt_decode(token)
+  return payload
 }
 
 export const uploadFile = (file) => {

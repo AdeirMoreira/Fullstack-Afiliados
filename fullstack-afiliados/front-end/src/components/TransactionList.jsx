@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import CollapsibleTable from "./CollapsibleTable";
 import { fetchSellers } from "../services";
@@ -20,18 +20,19 @@ const TransactionList = (props) => {
 
   React.useEffect(() => {
     if (getSellerEvent) {
-      fetchSellers().then((res) => {
-        setSellers(res);
-        getSellerEventHandle(false);
-      }).catch((error) => {
-
-        setSnackbarInfo({
-          show: true,
-          severety: ERROR,
-          color: ERROR,
-          message: error.errorMessage,
+      fetchSellers()
+        .then((res) => {
+          setSellers(res);
+          getSellerEventHandle(false);
+        })
+        .catch((error) => {
+          setSnackbarInfo({
+            show: true,
+            severety: ERROR,
+            color: ERROR,
+            message: error.errorMessage,
+          });
         });
-      });
     }
   }, [getSellerEvent, getSellerEventHandle]);
 
@@ -39,7 +40,8 @@ const TransactionList = (props) => {
     setSnackbarInfo({
       ...snackbarInfo,
       show: false,
-    })};
+    });
+  };
 
   return (
     <React.Fragment>
@@ -51,7 +53,13 @@ const TransactionList = (props) => {
         handleClose={handleCloseSnackbar}
       />
       <Box sx={{ padding: "1em" }}>
-        <CollapsibleTable sellers={sellers} />
+        {sellers.length ? (
+          <CollapsibleTable sellers={sellers} />
+        ) : (
+          <Typography variant="h5" align="center">
+            Não há nenhuma transação de nenhum vendedor cadastrada
+          </Typography>
+        )}
       </Box>
     </React.Fragment>
   );

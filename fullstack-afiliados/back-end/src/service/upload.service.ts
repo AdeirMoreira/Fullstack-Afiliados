@@ -13,7 +13,7 @@ export class UploadService {
 
       if (alreadyProcessed) {
         return Promise.reject(
-          ErrorObject(`Este arquivo ${fileName} já foi processado`, new Error())
+          ErrorObject(`O arquivo ${fileName} já foi processado`, new Error())
         );
       }
 
