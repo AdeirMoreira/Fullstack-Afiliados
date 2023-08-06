@@ -7,9 +7,8 @@ Projeto Full-Stack para o desafio Coodesh. No Front-End, uma aplicação React p
 ## Screenshots do site 📸
 
 <p  align="center">
-    <!-- <img src="" width="500" height="400">
-    <img src="" width="500" height="400">
-    <img src="" width="800" height="400"> -->
+    <img src="https://github.com/AdeirMoreira/Fullstack-Afiliados/assets/98994187/4d9d6700-3cf6-492f-80dc-61d710ebd2ab" width="300" height="200">
+    <img src="https://github.com/AdeirMoreira/Fullstack-Afiliados/assets/98994187/99aabf94-9199-4451-83bd-cfb3f931b612" width="300" height="200">
 <p/>
 
 ## Tecnologias 🛠
@@ -58,7 +57,7 @@ Tabela de domínio onde são registradas os tipos de transações e sua descriç
 Tabela onde são registradas as migrações.
 
 <p  align="center">
-    <!-- <img src="" width="300" height="200"> -->
+    <img src="https://github.com/AdeirMoreira/Fullstack-Afiliados/assets/98994187/15544321-777f-44be-95d1-4231e9594708" width="300" height="200">
 <p/>
 
 ## Rodando o projeto 🔛
