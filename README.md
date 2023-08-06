@@ -14,6 +14,7 @@ Projeto Full-Stack para o desafio Coodesh. No Front-End, uma aplicação React p
 ## Tecnologias 🛠
 
 - [React](https://pt-br.reactjs.org/)
+- [MaterialUI](https://mui.com/material-ui/getting-started/)
 - [Node](https://nodejs.org/en/)
 - [Express](https://expressjs.com/pt-br/)
 - [typeORM](https://typeorm.io/)
@@ -76,7 +77,18 @@ Caso você não pretenda usar o docker para rodar o banco de dados ou a api ou o
 docker compose up
 ```
 
-O projeto necessita apenas do comando acima para rodar. Durante o processo, o container do banco de dados irá subir primeiro, em seguinda o container do react app irá subir e comecerá a instalar as dependencias, ao terminar irá subir subir a aplicação react. O container da api aguardará até que o banco de dados esteja disponível. Quando o banco de dados estiver dispónivel para novas conexões, o container da api começará a instalar as dependencias e logo em seguida rodará as migrações para criar e popular as tabelas e por fim subirá o servidor da api. Após a conclusão o projeto estará pronto para uso.
+O projeto necessita apenas do comando acima para rodar. Durante o processo, o container do banco de dados irá subir primeiro, em seguinda o container do react app irá subir e comecerá a instalar as dependencias, ao terminar irá subir subir a aplicação react. O container da api aguardará até que o banco de dados esteja disponível. Quando o banco de dados estiver dispónivel para novas conexões, o container da api começará a instalar as dependencias e logo em seguida rodará as migrações para criar e popular as tabelas e por fim subirá o servidor da api. 
+
+Quando essas duas mensagens aparecerem no terminal, o projeto estará pronto para ser usado.
+```
+You can now view fullstack-afiliados in the browser.
+react-app  |
+react-app  |   Local:            http://localhost:3000
+```
+``` 
+Server is running in http://localhost: 3003
+api        | successful database connection
+```
 
 #### 🟢 [App-React](http://localhost:3000/)
 
@@ -85,6 +97,10 @@ O App-React rodará na porta 3000 e estará disponivel no endereço http://local
 #### 🟢 [API-Node](http://localhost:3003/)
 
 A API Node, por sua vez, rodará na porta 3003 e seu endereço base é http://localhost:3003/.
+
+## Usando o projeto 🚀
+
+Você pode encontrar o arquivo de testes original e variações dele [aqui](https://github.com/AdeirMoreira/Fullstack-Afiliados/tree/main/challenge-files).
 
 ## 👨‍💻 Desenvolvedor
 <table>         

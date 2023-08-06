@@ -81,7 +81,6 @@ export const login = (body) => {
         resolve();
       })
       .catch((error) => {
-        console.log(error.response);
         reject(error.response.data);
       });
   });
