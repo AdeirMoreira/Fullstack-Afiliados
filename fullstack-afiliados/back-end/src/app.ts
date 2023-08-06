@@ -10,4 +10,3 @@ app.use('/auth', AuthRouter)
 app.use("/users", UsersRouter)
 app.use("/uploadFile", ValidateToken, UploadRoutes);
 app.use("/sellers", ValidateToken, SellersRouter);
-;

@@ -4,8 +4,6 @@ import usersService, { UsersService } from "./users.service";
 import { ErrorObject } from "../common";
 import hashManagerService, { HashManagerService } from "./hashManager.service";
 
-const key = "asdasd";
-
 export class AuthenticationService {
   constructor(
     private userService: UsersService,
@@ -21,8 +19,8 @@ export class AuthenticationService {
         );
       }
 
-      const correntPassword = this.hashManager.compare(password, user.password);
-      if (!correntPassword) {
+      const correctPassword = this.hashManager.compare(password, user.password);
+      if (!correctPassword) {
         return Promise.reject(ErrorObject("Senha incorreta", new Error(), 401));
       }
 
@@ -43,17 +41,16 @@ export class AuthenticationService {
       {
         payload,
       },
-      key as string,
+      process.env.JWT_KEY as jwt.Secret,
       {
-        expiresIn: "24h",
+        expiresIn: process.env.EXPIRESIN,
       }
     );
     return token;
   };
 
   validateToken = (token: string): string => {
-    return jwt.verify(token, key as string) as any;
-    
+    return jwt.verify(token, process.env.JWT_KEY as jwt.Secret) as any;
   };
 }
 

@@ -6,36 +6,48 @@ services:
     container_name: mysql
     restart: always
     tty: true
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     ports:
-      - 3306:3306
+      - ${DB_PORT}:3306
     volumes:
       - ./back-end/.docker/dbdata:/var/lib/mysql
+    
+
+  api:
+    build: ./back-end
+    container_name: api
     environment:
-      - MYSQL_DATABASE=test
-      - MYSQL_ROOT_PASSWORD=test
-      - MYSQL_USER=test
-      - MYSQL_PASSWORD=test
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - API_PORT=${API_PORT}
+      - EXPIRESIN=${EXPIRESIN}
+      - JWT_KEY=${JWT_KEY}
+    ports:
+      - ${API_PORT}:${API_PORT}
+    volumes:
+      - ./back-end:/home/node/app
+    depends_on:
+      - db
+    command: >
+      bash -c "chmod +x .docker/wait-for-it.sh && ./.docker/wait-for-it.sh db:3306 -t 120 -- chmod +x .docker/entrypoint.sh && ./.docker/entrypoint.sh"
 
-  # api:
-  #   build: ./back-end
-  #   container_name: api
-  #   ports:
-  #     - 3003:3003
-  #   volumes:
-  #     - ./back-end:/home/node/app
-  #   depends_on:
-  #     - db
-  #   command: >
-  #     bash -c "chmod +x .docker/wait-for-it.sh && ./.docker/wait-for-it.sh db:3306 -t 120 -- chmod +x .docker/entrypoint.sh && ./.docker/entrypoint.sh"
-
-  # web:
-  #   build: ./front-end
-  #   container_name: react-app
-  #   ports:
-  #     - 3000:3000
-  #   volumes:
-  #     - ./front-end:/home/node/app
-  #   command: >
-  #     bash -c "chmod +x .docker/entrypoint.sh && ./.docker/entrypoint.sh"
-  #   depends_on:
-  #     - api
+  web:
+    build: ./front-end
+    container_name: react-app
+    environment:
+      - REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL}
+    ports:
+      - ${REACT_APP_PORT}:3000
+    volumes:
+      - ./front-end:/home/node/app
+    command: >
+      bash -c "chmod +x .docker/entrypoint.sh && ./.docker/entrypoint.sh"
+    depends_on:
+      - api

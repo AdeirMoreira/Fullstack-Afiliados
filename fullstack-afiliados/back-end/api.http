@@ -1,6 +1,6 @@
 ### Login
 # @name login
-POST http://localhost:3003/auth
+POST http://localhost:4003/auth
 Content-Type: application/json
 
 {
@@ -13,15 +13,15 @@ Content-Type: application/json
 @token = {{login.response.body.token}}
 
 ### 
-GET http://localhost:3003/uploadFile
+GET http://localhost:4003/uploadFile
 Authorization: {{token}}
 
 ###
-GET http://localhost:3003/sellers
+GET http://localhost:4003/sellers
 Authorization: {{token}}
 
 ###
-POST http://localhost:3003/users
+POST http://localhost:4003/users
 Authorization: {{token}}
 Content-Type: application/json
 

@@ -1,6 +1,6 @@
 import  jwt_decode from 'jwt-decode';
 import axios from "axios";
-import { BASE_URL } from "../constants";
+import { API_BASE_URL } from "../constants";
 
 const setHeaders = (ContentTYpe) => {
   const content_type = {
@@ -36,7 +36,7 @@ export const getTokenData = () => {
 export const uploadFile = (file) => {
   return new Promise((resolve, reject) => {
     axios
-      .post(`${BASE_URL}/uploadFile`, file, setHeaders('formData'))
+      .post(`${API_BASE_URL}/uploadFile`, file, setHeaders('formData'))
       .then(() => {
         resolve();
       })
@@ -49,7 +49,7 @@ export const uploadFile = (file) => {
 export const fetchSellers = () => {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${BASE_URL}/sellers`, setHeaders('json'))
+      .get(`${API_BASE_URL}/sellers`, setHeaders('json'))
       .then((res) => {
         resolve(res.data);
       })
@@ -60,10 +60,9 @@ export const fetchSellers = () => {
 };
 
 export const registerUser = (body) => {
-  console.log('resgtister');
   return new Promise((resolve, reject) => {
     axios
-      .post(`${BASE_URL}/users`, body, setHeaders('json'))
+      .post(`${API_BASE_URL}/users`, body, setHeaders('json'))
       .then((res) => {
         resolve(res.data);
       })
@@ -76,12 +75,13 @@ export const registerUser = (body) => {
 export const login = (body) => {
   return new Promise((resolve, reject) => {
     axios
-      .post(`${BASE_URL}/auth`, body, setHeaders('json'))
+      .post(`${API_BASE_URL}/auth`, body, setHeaders('json'))
       .then((res) => {
         setToken(res.data.token)
         resolve();
       })
       .catch((error) => {
+        console.log(error.response);
         reject(error.response.data);
       });
   });

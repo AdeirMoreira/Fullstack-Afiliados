@@ -17,7 +17,6 @@ import React from "react";
 import { registerUser } from "../services/index";
 import CustonSnackbar from "../components/Snackbar";
 import { ERROR, SUCCESS, USER_CREATE_SUCCESS } from "../constants";
-import { useNavigate } from "react-router-dom";
 
 export default function SignUP() {
   const [name, setName] = React.useState("");
@@ -30,7 +29,7 @@ export default function SignUP() {
     message: "",
     severety: null,
   });
-  const navigate = useNavigate();
+
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -46,7 +45,6 @@ export default function SignUP() {
             message: USER_CREATE_SUCCESS,
           });
 
-          navigate("/");
         })
         .catch((error) => {
           setSnackbarInfo({

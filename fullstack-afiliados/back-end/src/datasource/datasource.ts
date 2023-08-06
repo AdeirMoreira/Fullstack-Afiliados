@@ -1,4 +1,4 @@
-import { DataSource } from "typeorm";
+import { DataSource, DataSourceOptions } from "typeorm";
 import { Seller } from "../entities/seller/seller.entity";
 import { Transaction } from "../entities/transactions/transaction.entity";
 import { CreateTableTransactions1690680771837 } from "./migrations/1690680771837-createTableTransactions";
@@ -9,13 +9,13 @@ import { PopulateTableDOMTypeTransaction1690722280817 } from "./migrations/16907
 import { User } from "../entities/users/user.entity";
 import { CreateTableUsers1691236333033 } from "./migrations/1691236333033-createTableUsers";
 
-export const AppDataSource = new DataSource({
+const dataSourceOptions:DataSourceOptions = {
   type: "mysql",
-  host: "localhost",
+  host: process.env.DB_HOST,
   port: 3306,
-  username: "test",
-  password: "test",
-  database: "test",
+  username: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
   entities: [Seller, Transaction, User],
   synchronize: false,
   migrations: [
@@ -26,4 +26,6 @@ export const AppDataSource = new DataSource({
     PopulateTableDOMTypeTransaction1690722280817,
     CreateTableUsers1691236333033,
   ],
-});
+}
+
+export const AppDataSource = new DataSource(dataSourceOptions);

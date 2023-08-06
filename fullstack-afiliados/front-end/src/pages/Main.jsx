@@ -4,6 +4,7 @@ import FileForm from "../components/FileForm";
 import TransactionList from "../components/TransactionList";
 import { useNavigate } from "react-router-dom";
 import { getTokenData, removeToken } from "../services";
+import { AccountBox } from "@mui/icons-material";
 
 const MainPage = () => {
   const [getSellerEvent, setGetSellerEvent] = React.useState(false);
@@ -48,7 +49,7 @@ const MainPage = () => {
                 marginRight: 2,
               }}
             >
-              <Avatar></Avatar>
+              <Avatar sx={{bgcolor: "#2E7D32"}}><AccountBox/></Avatar>
               <Typography>{payload.name}</Typography>
             </Box>
             <Box sx={{ marginRight: 1, marginTop: -4 }}>
